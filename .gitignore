@@ -1,16 +1,20 @@
-# Object files
+# Compiled Object files
+*.slo
+*.lo
 *.o
 *.ko
 
-# Libraries
-*.lib
-*.a
-
-# Shared objects (inc. Windows DLLs)
+# Compiled Dynamic libraries
 *.dll
 *.so
 *.so.*
 *.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.lib
+*.a
 
 # Executables
 *.exe
