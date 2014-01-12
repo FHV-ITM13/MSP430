@@ -1,4 +1,3 @@
-ITM13_MSP430
+ITM13 MSP430
 ============
-
-ITM13 MSP430 projects
+master studies TI MSP430 projects
