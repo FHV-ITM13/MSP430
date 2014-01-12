@@ -21,5 +21,46 @@
 *.out
 *.app
 
-# Eclipse metadata
-*.metadata
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.ko
+
+# Compiled Dynamic libraries
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.lib
+*.a
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Eclipse files
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
