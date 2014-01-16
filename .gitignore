@@ -46,7 +46,8 @@
 
 # Eclipse files
 *.pydevproject
-.project
+#.project
+#.cproject
 .metadata
 bin/**
 tmp/**
