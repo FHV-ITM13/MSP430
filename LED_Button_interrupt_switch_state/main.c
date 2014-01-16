@@ -1,4 +1,4 @@
-#include <msp430.h> 
+#include <msp430.h>
 
 #define redLED		0x01 //BIT0
 #define pushButton 	0x08 //BIT3
