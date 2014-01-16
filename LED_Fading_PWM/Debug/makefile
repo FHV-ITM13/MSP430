@@ -8,13 +8,13 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/msp430_4.2.1
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./blink.obj" \
+"./main.obj" \
 "../lnk_msp430g2553.cmd" \
 -l"libc.a" \
 
 -include ../makefile.init
 
-RM := 
+RM := DEL /F
 RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
@@ -109,21 +109,21 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: LED.out
+all: LED_Fading_PWM.out
 
 # Tool invocations
-LED.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+LED_Fading_PWM.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"LED.map" --heap_size=80 --stack_size=80 -i"/msp430/include" -i"/lib" -i"/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="LED_linkInfo.xml" --rom_model -o "LED.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2001__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"LED_Fading_PWM.map" --heap_size=0 --stack_size=50 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="LED_Fading_PWM_linkInfo.xml" --rom_model -o "LED_Fading_PWM.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(MSP430_EXECUTABLE_OUTPUTS__QUOTED) "LED.out"
-	-$(RM) "blink.pp" 
-	-$(RM) "blink.obj" 
+	-$(RM) $(MSP430_EXECUTABLE_OUTPUTS__QUOTED) "LED_Fading_PWM.out"
+	-$(RM) "main.pp" 
+	-$(RM) "main.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
