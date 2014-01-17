@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v4.2.1</banner>
    <copyright>Copyright (c) 2003-2013 Texas Instruments Incorporated</copyright>
-   <link_time>0x52d847ad</link_time>
+   <link_time>0x52d8f747</link_time>
    <link_errors>0x0</link_errors>
    <output_file>LED_Button_interrupt_switch_state.out</output_file>
    <entry_point>
@@ -561,7 +561,7 @@
          <name>.debug_info</name>
          <load_address>0x18e1</load_address>
          <run_address>0x18e1</run_address>
-         <size>0xba</size>
+         <size>0xc3</size>
       </object_component>
       <object_component id="oc-3c">
          <name>.debug_line</name>
@@ -1474,7 +1474,7 @@
          <name>.debug_info</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
-         <size>0x199b</size>
+         <size>0x19a4</size>
          <contents>
             <object_component_ref idref="oc-3b"/>
             <object_component_ref idref="oc-40"/>
