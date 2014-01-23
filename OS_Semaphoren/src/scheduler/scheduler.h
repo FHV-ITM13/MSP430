@@ -8,12 +8,23 @@
 #ifndef SCHEDULER_H_
 #define SCHEDULER_H_
 
+/*
+ * attr, const,...
+ */
+const int INVALID_ID = -1;
+
+/*
+ * struct
+ */
 typedef struct {
 	int threadID;
 } threadID;
 
-void 	scheduler_runNextThread	();
-int 	scheduler_startThread	(void (*threadFunc)(void));
-void	scheduler_stop			();
+/*
+ * methods
+ */
+void 		scheduler_runNextThread	();
+threadID 	scheduler_startThread	(void (*threadFunc)());
+void		scheduler_stop			();
 
 #endif /* SCHEDULER_H_ */
