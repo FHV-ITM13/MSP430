@@ -8,21 +8,24 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/msp430_4.2.1
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./semaphore.obj" \
-"./scheduler.obj" \
-"./main.obj" \
+"./src/main.obj" \
+"./src/scheduler/scheduler.obj" \
 "../lnk_msp430g2553.cmd" \
 -l"libc.a" \
 
 -include ../makefile.init
 
-RM := 
+RM := DEL /F
 RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include src/scheduler/subdir_vars.mk
+-include src/subdir_vars.mk
 -include subdir_rules.mk
+-include src/scheduler/subdir_rules.mk
+-include src/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -117,15 +120,15 @@ all: OS_Semaphoren.out
 OS_Semaphoren.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"OS_Semaphoren.map" --heap_size=80 --stack_size=80 -i"/msp430/include" -i"/lib" -i"/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="OS_Semaphoren_linkInfo.xml" --rom_model -o "OS_Semaphoren.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"OS_Semaphoren.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="OS_Semaphoren_linkInfo.xml" --rom_model -o "OS_Semaphoren.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(MSP430_EXECUTABLE_OUTPUTS__QUOTED) "OS_Semaphoren.out"
-	-$(RM) "main.pp" "scheduler.pp" "semaphore.pp" 
-	-$(RM) "main.obj" "scheduler.obj" "semaphore.obj" 
+	-$(RM) "src\scheduler\scheduler.pp" "src\main.pp" 
+	-$(RM) "src\scheduler\scheduler.obj" "src\main.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

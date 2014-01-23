@@ -3,25 +3,4 @@
 ################################################################################
 
 # Each subdirectory must supply rules for building sources it contributes
-main.obj: ../main.c $(GEN_OPTS) $(GEN_HDRS)
-	@echo 'Building file: $<'
-	@echo 'Invoking: MSP430 Compiler'
-	"" -vmsp --abi=eabi --include_path="/msp430/include" --include_path="/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.pp" $(GEN_OPTS__FLAG) "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
-scheduler.obj: ../scheduler.c $(GEN_OPTS) $(GEN_HDRS)
-	@echo 'Building file: $<'
-	@echo 'Invoking: MSP430 Compiler'
-	"" -vmsp --abi=eabi --include_path="/msp430/include" --include_path="/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="scheduler.pp" $(GEN_OPTS__FLAG) "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
-semaphore.obj: ../semaphore.c $(GEN_OPTS) $(GEN_HDRS)
-	@echo 'Building file: $<'
-	@echo 'Invoking: MSP430 Compiler'
-	"" -vmsp --abi=eabi --include_path="/msp430/include" --include_path="/include" --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="semaphore.pp" $(GEN_OPTS__FLAG) "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
 

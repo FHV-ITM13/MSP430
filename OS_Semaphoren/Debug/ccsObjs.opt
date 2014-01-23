@@ -1,1 +1,1 @@
-"./semaphore.obj" "./scheduler.obj" "./main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+"./src/main.obj" "./src/scheduler/scheduler.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
