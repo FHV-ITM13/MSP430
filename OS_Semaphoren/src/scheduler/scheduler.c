@@ -11,10 +11,7 @@
 #include <msp430.h>
 
 #define MAX_THREADS		10
-
-/*
- * Semaphor: counter, queue
- */
+#define THREAD_SIZE		32
 
 /*
  * Scheduler methods
@@ -31,79 +28,76 @@ void ATOMIC_END(); // up
 typedef struct {
 	threadID id;
 	unsigned int state;
-
-	void (*threadFunc)();
+	threadFunc func;
 	jmp_buf context;
 } thread;
+
+typedef unsigned int intstate_t;
 
 enum ThreadState {
 	INVALID = 0, // init value of thread
 	READY,
 	RUNNING,
-	BLOCKED,
-	SUSPENDED
+	BLOCKED
 };
 
-static threadID THREAD_ID_INVALID;
-
+static threadID INVALID_ID = -1;
 static threadID runningThread;
 static thread threads[MAX_THREADS];
 
-void scheduler_init() {
-	THREAD_ID_INVALID.threadID = INVALID_ID;
+threadID scheduler_startThread(threadFunc func) {
+	intstate_t s;
+	ATOMIC_START(&s);
 
-	runningThread = THREAD_ID_INVALID;
-}
+	threadID newThreadSlot = getFreeThreadSlot();
 
-threadID scheduler_startThread(void (*threadFunc)()) {
-	ATOMIC_START();
-
-	threadID newThreadSlot;
-	newThreadSlot.threadID = getFreeThreadSlot();
-
-	if (newThreadSlot.threadID != INVALID_ID) {
-		// new thread
-		threads[newThreadSlot.threadID].id = newThreadSlot;
-		threads[newThreadSlot.threadID].state = READY;
-		threads[newThreadSlot.threadID].threadFunc = threadFunc;
-
-		if (setjmp(threads[newThreadSlot.threadID].context) == 0) {
-			// current context saved
-			ATOMIC_END();
-		} else {
-			// running here as active Thread
-			void* SP = malloc(200);
-			_set_SP_register(SP);
-			ATOMIC_END();
-
-			threads[runningThread.threadID].threadFunc();
-
-			scheduler_killThread();
-		}
+	if (newThreadSlot == INVALID_ID) {
+		ATOMIC_END(&s);
+		return INVALID_ID;
 	}
 
-	return newThreadSlot;
+	// new thread
+	threads[newThreadSlot].id = newThreadSlot;
+	threads[newThreadSlot].state = READY;
+	threads[newThreadSlot].func = func;
+
+	if (setjmp(threads[newThreadSlot].context) == 0) {
+		// current context saved
+		ATOMIC_END(&s);
+		return newThreadSlot;
+	} else {
+		//coming from long jump
+		// running here as active Thread
+		__set_SP_register(0x3FF - (runningThread * THREAD_SIZE));
+
+		ATOMIC_END(&s);
+
+		threads[runningThread].func();
+
+		scheduler_killThread();
+
+		return INVALID_ID;
+	}
 }
 
 void scheduler_runNextThread() {
-	ATOMIC_START();
+	intstate_t s;
+	ATOMIC_START(&s);
 	threadID nextThread;
 
-	if ((nextThread.threadID = getNextThreadID()) != INVALID_ID) {
-		switch (threads[nextThread.threadID].state) {
-		case RUNNING:
-			break; // already running
+	if ((nextThread = getNextThreadID()) != INVALID_ID) {
+		switch (threads[nextThread].state) {
 		case READY:
-			if (setjmp(threads[runningThread.threadID].context) == 0) {
+			if (setjmp(threads[runningThread].context) == 0) {
 				// saved current execution state
-				if (threads[runningThread.threadID].state == RUNNING) {
-					threads[runningThread.threadID].state = READY;
+				if (threads[runningThread].state == RUNNING) {
+					threads[runningThread].state = READY;
 				}
 
 				//switch threads
 				runningThread = nextThread;
-				threads[runningThread.threadID].state = RUNNING;
-				longjmp(threads[runningThread.threadID].context, 1);
+				threads[runningThread].state = RUNNING;
+				longjmp(threads[runningThread].context, 1);
 			}
 			break;
 		default:
@@ -111,22 +105,19 @@ void scheduler_runNextThread() {
 		}
 	}
 
-	ATOMIC_END();
-}
-
-void scheduler_stop() {
-
+	ATOMIC_END(s);
 }
 
 void scheduler_killThread() {
-	threads[runningThread.threadID].state = READY;
+	threads[runningThread].state = INVALID;
+	threads[runningThread].func = 0;
 }
 
 int getFreeThreadSlot() {
 	int i;
 
 	for (i = 0; i < MAX_THREADS; i++) {
-		if (threads[i].threadFunc == NULL) {
+		if (threads[i].state == INVALID) {
 			return i;
 		}
 	}
@@ -137,16 +128,16 @@ int getFreeThreadSlot() {
 int getNextThreadID() {
 	int i;
 
-	//search from running thread to max thread for next possible thread
-	for (i = runningThread.threadID + 1; i < MAX_THREADS; i++) {
-		if (threads[i].threadFunc != NULL && threads[i].state == READY) {
+	//search from running thread id to max thread id for next possible thread
+	for (i = runningThread + 1; i < MAX_THREADS; i++) {
+		if (threads[i].state == READY) {
 			return i;
 		}
 	}
 
 	//search part of array before running therad
-	for (i = 0; i < runningThread.threadID; i++) {
-		if (threads[i].threadFunc != NULL && threads[i].state == READY) {
+	for (i = 0; i < runningThread; i++) {
+		if (threads[i].state == READY) {
 			return i;
 		}
 	}
@@ -154,19 +145,19 @@ int getNextThreadID() {
 	return INVALID_ID;
 }
 
-void ATOMIC_START() {
-	//_disable_interrupts()
-	TA0CCTL0 &= 0x0; // Disable counter interrupts
-
+void ATOMIC_START(intstate_t* s) {
+	*s = _get_interrupt_state();
+	_disable_interrupts();
+	//TA0CCTL0 &= 0x0; // Disable counter interrupts
 }
 
-void ATOMIC_END() {
-	//_enable_interrupts();
-	TA0CCTL0 = 0x10; // Enable counter interrupts, bit 4=1
+void ATOMIC_END(intstate_t s) {
+	_set_interrupt_state(s);
 }
 
 /*
- * Stemaphore
+ * Stemaphore - nur fuer die synchronisierung
+ * benoetigt
  */
 //void semaphor_P() {
 //	ATOMIC_START();

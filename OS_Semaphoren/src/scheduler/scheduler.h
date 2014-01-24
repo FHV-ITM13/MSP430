@@ -9,23 +9,16 @@
 #define SCHEDULER_H_
 
 /*
- * attr, const,...
+ * Typedef
  */
-const int INVALID_ID = -1;
-
-/*
- * struct
- */
-typedef struct {
-	int threadID;
-} threadID;
+typedef int threadID;
+typedef void (*threadFunc)();
 
 /*
  * methods
  */
 void 		scheduler_init			();
 void 		scheduler_runNextThread	();
-threadID 	scheduler_startThread	(void (*threadFunc)());
-void		scheduler_stop			();
+threadID 	scheduler_startThread	(threadFunc func);
 
 #endif /* SCHEDULER_H_ */
