@@ -14,7 +14,7 @@ $(GEN_CMDS__FLAG) \
 
 -include ../makefile.init
 
-RM := 
+RM := DEL /F
 RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
@@ -115,7 +115,7 @@ all: LED_Button_interrupt.out
 LED_Button_interrupt.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"LED_Button_interrupt.map" --heap_size=80 --stack_size=80 -i"/msp430/include" -i"/lib" -i"/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="LED_Button_interrupt_linkInfo.xml" --rom_model -o "LED_Button_interrupt.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/bin/cl430" -vmsp --abi=eabi --advice:power=all -g --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"LED_Button_interrupt.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccsv5/ccs_base/msp430/include" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/lib" -i"C:/ti/ccsv5/tools/compiler/msp430_4.2.1/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="LED_Button_interrupt_linkInfo.xml" --rom_model -o "LED_Button_interrupt.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
