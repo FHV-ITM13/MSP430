@@ -1,0 +1,1 @@
+"./main.obj" "./LED2.obj" "./LED1_BLINK.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
