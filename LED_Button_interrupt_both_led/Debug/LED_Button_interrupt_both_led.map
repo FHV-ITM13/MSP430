@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v4.2.1                      
 ******************************************************************************
->> Linked Fri Jan 17 10:28:23 2014
+>> Linked Sat Jan 25 11:09:32 2014
 
 OUTPUT FILE NAME:   <LED_Button_interrupt_both_led.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 0000c11a

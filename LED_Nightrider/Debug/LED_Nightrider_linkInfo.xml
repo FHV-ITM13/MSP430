@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v4.2.1</banner>
    <copyright>Copyright (c) 2003-2013 Texas Instruments Incorporated</copyright>
-   <link_time>0x52e37539</link_time>
+   <link_time>0x52e38d62</link_time>
    <link_errors>0x0</link_errors>
    <output_file>LED_Nightrider.out</output_file>
    <entry_point>
