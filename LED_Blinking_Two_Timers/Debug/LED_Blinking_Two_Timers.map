@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v4.2.1                      
 ******************************************************************************
->> Linked Sat Jan 25 11:09:24 2014
+>> Linked Tue Jan 28 20:24:38 2014
 
 OUTPUT FILE NAME:   <LED_Blinking_Two_Timers.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 0000c0a2
