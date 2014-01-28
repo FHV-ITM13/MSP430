@@ -42,17 +42,16 @@ enum ThreadState {
 };
 
 static threadID INVALID_ID = -1;
-static threadID runningThread;
+static threadID runningThread = -1;
 static thread threads[MAX_THREADS];
 
 threadID scheduler_startThread(threadFunc func) {
-	intstate_t s;
-	ATOMIC_START(&s);
+	ATOMIC_START();
 
 	threadID newThreadSlot = getFreeThreadSlot();
 
 	if (newThreadSlot == INVALID_ID) {
-		ATOMIC_END(&s);
+		ATOMIC_END();
 		return INVALID_ID;
 	}
 
@@ -63,14 +62,14 @@ threadID scheduler_startThread(threadFunc func) {
 
 	if (setjmp(threads[newThreadSlot].context) == 0) {
 		// current context saved
-		ATOMIC_END(&s);
+		ATOMIC_END();
 		return newThreadSlot;
 	} else {
 		//coming from long jump
 		// running here as active Thread
 		__set_SP_register(0x3FF - (runningThread * THREAD_SIZE));
 
-		ATOMIC_END(&s);
+		ATOMIC_END();
 
 		threads[runningThread].func();
 
@@ -81,11 +80,10 @@ threadID scheduler_startThread(threadFunc func) {
 }
 
 void scheduler_runNextThread() {
-	intstate_t s;
-	ATOMIC_START(&s);
-	threadID nextThread;
+	ATOMIC_START();
+	threadID nextThread = getNextThreadID();
 
-	if ((nextThread = getNextThreadID()) != INVALID_ID) {
+	if (nextThread != INVALID_ID) {
 		switch (threads[nextThread].state) {
 		case READY:
 			if (setjmp(threads[runningThread].context) == 0) {
@@ -105,7 +103,7 @@ void scheduler_runNextThread() {
 		}
 	}
 
-	ATOMIC_END(s);
+	ATOMIC_END();
 }
 
 void scheduler_killThread() {
@@ -126,33 +124,26 @@ int getFreeThreadSlot() {
 }
 
 int getNextThreadID() {
-	int i;
+	threadID nextThread = runningThread + 1;
 
-	//search from running thread id to max thread id for next possible thread
-	for (i = runningThread + 1; i < MAX_THREADS; i++) {
-		if (threads[i].state == READY) {
-			return i;
+	while(nextThread < MAX_THREADS && nextThread != runningThread) {
+		if ( READY == threads[ nextThread ].state )
+		{
+			return nextThread;
 		}
-	}
 
-	//search part of array before running therad
-	for (i = 0; i < runningThread; i++) {
-		if (threads[i].state == READY) {
-			return i;
-		}
+		nextThread = ++nextThread % MAX_THREADS;
 	}
 
 	return INVALID_ID;
 }
 
-void ATOMIC_START(intstate_t* s) {
-	*s = _get_interrupt_state();
+void ATOMIC_START() {
 	_disable_interrupts();
-	//TA0CCTL0 &= 0x0; // Disable counter interrupts
 }
 
-void ATOMIC_END(intstate_t s) {
-	_set_interrupt_state(s);
+void ATOMIC_END() {
+	_enable_interrupts();
 }
 
 /*
