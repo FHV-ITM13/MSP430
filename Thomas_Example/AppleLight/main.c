@@ -29,7 +29,6 @@ int main(void) {
 	    }
 
 	    #pragma vector=WDT_VECTOR                 // Watchdog Timer interrupt service routine
-
 	      __interrupt void watchdog_timer(void) {
 
 	        TA0CCR1 += pwmDirection*20;           // Increase/decrease duty cycle, on vs. off time
