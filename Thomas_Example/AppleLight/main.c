@@ -29,10 +29,15 @@ int main(void) {
 	// Enter Low power mode 0
 }
 
+<<<<<<< HEAD
 #pragma vector=WDT_VECTOR                 // Watchdog Timer interrupt service routine
 __interrupt void watchdog_timer(void) {
 
 	TA0CCR1 += pwmDirection * 20; // Increase/decrease duty cycle, on vs. off time
+=======
+	    #pragma vector=WDT_VECTOR                 // Watchdog Timer interrupt service routine
+	      __interrupt void watchdog_timer(void) {
+>>>>>>> branch 'master' of https://github.com/FHV-ITM13/MSP430.git
 
 	if (TA0CCR1 > 980 || TA0CCR1 < 20) // Pulse brighter (increasing TA0CCR1) or dimmer
 		pwmDirection = -pwmDirection;
