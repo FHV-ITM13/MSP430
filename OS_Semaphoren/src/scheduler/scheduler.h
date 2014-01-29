@@ -17,7 +17,6 @@ typedef void (*threadFunc)();
 /*
  * methods
  */
-void 		scheduler_init			();
 void 		scheduler_runNextThread	();
 threadID 	scheduler_startThread	(threadFunc func);
 
