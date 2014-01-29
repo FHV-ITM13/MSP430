@@ -5,7 +5,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.TI MSP430 USB1/MSP430" value="${build_artifact:LED_Button_interrupt_switch_state}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.TI MSP430 USB1/MSP430" value="LED_Button_interrupt_switch_state"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:LED_Button_interrupt_switch_state}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TI MSP430 USB1/MSP430" value="C:/Users\Stefan\Documents\MSP400\ITM13_MSP430\LED_Button_interrupt_switch_state\Debug\LED_Button_interrupt_switch_state.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TI MSP430 USB1/MSP430" value="D:/Documents\MSP430\MSP430\LED_Button_interrupt_switch_state\Debug\LED_Button_interrupt_switch_state.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/LED_Button_interrupt_switch_state"/>
 </listAttribute>

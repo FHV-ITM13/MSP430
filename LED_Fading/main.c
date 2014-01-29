@@ -25,8 +25,7 @@ int main(void) {
 	TA0CTL = TASSEL_2 + MC_1; // Timer A control set to SMCLK clock TASSEL_2, 1MHz
 							  // and count up mode MC_1
 
-	_BIS_SR(LPM0_bits + GIE);
-	// Enter Low power mode 0
+	_BIS_SR(GIE);
 }
 
 #pragma vector=WDT_VECTOR                 // Watchdog Timer interrupt service routine
