@@ -32,11 +32,10 @@ int main() {
 	P1IE |= BUTTON;		//enable button interrupt
 
 	//configure timer A
-	TA0CCR0 = 30000;// PWM period
+	TA0CCR0 = 1000;// PWM period
 	TA0CCTL0 = 0x10; //up mode
-	TA0CCR1 = 7500;   // PWM duty cycle, time cycle on vs. off, on 1/1000 initially
+	TA0CCR1 = 100;   // PWM duty cycle, time cycle on vs. off, on 1/1000 initially
 	TA0CCTL1 = OUTMOD_7;    // TA0CCR1 reset/set -- high voltage below count and low voltage when past
-
 	TA0CTL = TASSEL_1 + MC_1; // Timer A control set to ACLK clock and count up mode MC_1
 
 	_BIS_SR(LPM0_bits + GIE);
