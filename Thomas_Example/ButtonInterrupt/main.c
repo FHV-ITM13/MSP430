@@ -14,8 +14,8 @@ int main(void) {
     P1DIR|=BIT0;
     P1DIR|=BIT6;
     P1OUT^=(1<<0);
-    P1OUT|=button; //Pullup on
 
+    P1OUT|=button; //Pullup on
     P1REN|=button; // Enable Port P1.3 (push button) pull-up resistor
 
     // interrupt stuff

@@ -10,7 +10,7 @@ int main(void) {
     P1SEL|=BIT6+BIT0;
 
     TA0CCR0=12000;
-    TA0CCR1=1200;
+    TA0CCR1=6000;
 
     TA0CCTL1|=OUTMOD_7;
 
