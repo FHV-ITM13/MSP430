@@ -38,7 +38,8 @@ int main() {
 	TA0CCTL1 = OUTMOD_7;    // TA0CCR1 reset/set -- high voltage below count and low voltage when past
 
 	TA0CTL = TASSEL_1 + MC_1; // Timer A control set to ACLK clock and count up mode MC_1
-	_enable_interrupts();
+
+	_BIS_SR(LPM0_bits + GIE);
 }
 
 #pragma vector=TIMER0_A0_VECTOR
