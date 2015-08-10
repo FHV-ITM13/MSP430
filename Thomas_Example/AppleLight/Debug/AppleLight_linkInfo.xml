@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v4.2.1</banner>
    <copyright>Copyright (c) 2003-2013 Texas Instruments Incorporated</copyright>
-   <link_time>0x55af91be</link_time>
+   <link_time>0x55c85205</link_time>
    <link_errors>0x0</link_errors>
    <output_file>AppleLight.out</output_file>
    <entry_point>

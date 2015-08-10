@@ -1,6 +1,6 @@
 #
 # This file was generated based on the configuration script:
-#     C:\Users\GIGI\CodeComposerworkspace_v5_5\PWMGreenRedSwitch\main.cfg
+#     C:\Users\GIGI\GitWorkspace\ITM13\MSP\Thomas_Example\GreenRedSwitchLight\main.cfg
 #
 # This makefile may be included in other makefiles that need to build
 # the libraries containing the compiled source files generated as
@@ -14,7 +14,7 @@
 #
 # The absolute path to the generated source directory (at the time the
 # sources were generated) is:
-#    C:\Users\GIGI\CodeComposerworkspace_v5_5\PWMGreenRedSwitch\src
+#    C:\Users\GIGI\GitWorkspace\ITM13\MSP\Thomas_Example\GreenRedSwitchLight\src
 #
 GEN_SRC_DIR ?= ../src
 

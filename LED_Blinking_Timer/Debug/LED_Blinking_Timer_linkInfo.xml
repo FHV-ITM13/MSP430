@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v4.2.1</banner>
    <copyright>Copyright (c) 2003-2013 Texas Instruments Incorporated</copyright>
-   <link_time>0x52e38d52</link_time>
+   <link_time>0x55c85219</link_time>
    <link_errors>0x0</link_errors>
    <output_file>LED_Blinking_Timer.out</output_file>
    <entry_point>
@@ -341,70 +341,70 @@
          <name>.debug_info</name>
          <load_address>0x291</load_address>
          <run_address>0x291</run_address>
-         <size>0xeb</size>
+         <size>0x102</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-5d">
          <name>.debug_info</name>
-         <load_address>0x37c</load_address>
-         <run_address>0x37c</run_address>
+         <load_address>0x393</load_address>
+         <run_address>0x393</run_address>
          <size>0xfd</size>
          <input_file_ref idref="fl-2f"/>
       </object_component>
       <object_component id="oc-60">
          <name>.debug_info</name>
-         <load_address>0x479</load_address>
-         <run_address>0x479</run_address>
+         <load_address>0x490</load_address>
+         <run_address>0x490</run_address>
          <size>0x14d</size>
          <input_file_ref idref="fl-32"/>
       </object_component>
       <object_component id="oc-65">
          <name>.debug_info</name>
-         <load_address>0x5c6</load_address>
-         <run_address>0x5c6</run_address>
-         <size>0xe0</size>
+         <load_address>0x5dd</load_address>
+         <run_address>0x5dd</run_address>
+         <size>0xf7</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-6a">
          <name>.debug_info</name>
-         <load_address>0x6a6</load_address>
-         <run_address>0x6a6</run_address>
+         <load_address>0x6d4</load_address>
+         <run_address>0x6d4</run_address>
          <size>0xcc</size>
          <input_file_ref idref="fl-21"/>
       </object_component>
       <object_component id="oc-90">
          <name>.debug_info</name>
-         <load_address>0x772</load_address>
-         <run_address>0x772</run_address>
+         <load_address>0x7a0</load_address>
+         <run_address>0x7a0</run_address>
          <size>0x84</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-99">
          <name>.debug_info</name>
-         <load_address>0x7f6</load_address>
-         <run_address>0x7f6</run_address>
+         <load_address>0x824</load_address>
+         <run_address>0x824</run_address>
          <size>0xe1</size>
          <input_file_ref idref="fl-20"/>
       </object_component>
       <object_component id="oc-9d">
          <name>.debug_info</name>
-         <load_address>0x8d7</load_address>
-         <run_address>0x8d7</run_address>
+         <load_address>0x905</load_address>
+         <run_address>0x905</run_address>
          <size>0x2ba</size>
          <input_file_ref idref="fl-32"/>
       </object_component>
       <object_component id="oc-b6">
          <name>.debug_info</name>
-         <load_address>0xb91</load_address>
-         <run_address>0xb91</run_address>
+         <load_address>0xbbf</load_address>
+         <run_address>0xbbf</run_address>
          <size>0x39</size>
          <input_file_ref idref="fl-32"/>
       </object_component>
       <object_component id="oc-f4">
          <name>.debug_info</name>
-         <load_address>0xbca</load_address>
-         <run_address>0xbca</run_address>
-         <size>0x94</size>
+         <load_address>0xbf8</load_address>
+         <run_address>0xbf8</run_address>
+         <size>0xab</size>
       </object_component>
       <object_component id="oc-3c">
          <name>.debug_line</name>
@@ -1005,7 +1005,7 @@
          <name>.debug_info</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
-         <size>0xc5e</size>
+         <size>0xca3</size>
          <contents>
             <object_component_ref idref="oc-3b"/>
             <object_component_ref idref="oc-4f"/>
